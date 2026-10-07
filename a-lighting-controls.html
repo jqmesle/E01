@@ -18,37 +18,32 @@
   <button id="previous" type="button">Previous</button>
   <button id="next" type="button">Next</button>
   <script>
-    const X = [
+
+    const color = [
       { name: "Amber", color: "#e6a23c" },
       { name: "Indigo", color: "#6555aa" },
       { name: "Teal", color: "#248a87" },
     ];
     let x = 0;
-    let updates_enabled = true;
     const label = document.querySelector("#label");
     const swatch = document.querySelector("#swatch");
 
     function update() {
-      if (updates_enabled) {
-        let item = X[0];
-        for (let i = 0; i < X.length; i++) {
-          if (i === x) item = X[i];
-        }
-        label.textContent = item.name;
-        swatch.style.backgroundColor = item.color;
-      } else {
-        console.log("ignored update while updates are disabled");
-      }
+      const item = color[x];
+      label.textContent = item.name;
+      swatch.style.backgroundColor = item.color;
     }
 
     document.querySelector("#next").addEventListener("click", () => {
-      x = (x + 1) % X.length;
+      x = (x + 1) % color.length;
       update();
     });
+
     document.querySelector("#previous").addEventListener("click", () => {
-      x = (x - 1 + X.length) % X.length;
+      x = (x - 1 + color.length) % color.length;
       update();
     });
+
     update();
   </script>
 </body>
